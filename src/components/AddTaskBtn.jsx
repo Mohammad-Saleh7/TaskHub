@@ -1,20 +1,14 @@
-import { Box, Button } from "@mui/material";
+// AddTaskBtn.jsx
+import { Button } from "@mui/material";
 
-export default function AddTaskBtn() {
+export default function AddTaskBtn({ onClick }) {
   return (
-    <div>
-      <Box>
-        <Button
-          variant="contained"
-          sx={{
-            bgcolor: "#F9F8F6",
-            color: "black",
-            width: "160px",
-          }}
-        >
-          + Add Task
-        </Button>
-      </Box>
-    </div>
+    <Button
+      variant="contained"
+      onClick={onClick}
+      sx={{ bgcolor: "#F9F8F6", color: "black", width: 160 }}
+    >
+      + ADD TASK
+    </Button>
   );
 }
