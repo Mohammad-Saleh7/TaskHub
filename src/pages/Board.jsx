@@ -1,17 +1,22 @@
 import { useState } from "react";
 import { Box, Button, Container, Typography, Paper } from "@mui/material";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
+import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 
 import Header from "../components/Header";
 import AddTaskBtn from "../components/AddTaskBtn";
 import AddTaskModal from "../components/AddTaskModal";
 
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectColumns, selectTasks } from "../redux/boardSlice";
+import { deleteTask, moveTaskToDone } from "../redux/boardSlice";
+import Footer from "../components/Footer";
 
 export default function Board() {
   const columns = useSelector(selectColumns);
   const tasks = useSelector(selectTasks);
+  const dispatch = useDispatch();
 
   const [modalOpen, setModalOpen] = useState(false);
   const [activeColumnId, setActiveColumnId] = useState(null);
@@ -26,11 +31,26 @@ export default function Board() {
     setActiveColumnId(null);
   };
 
+  const handleDeleteTask = (id) => {
+    dispatch(deleteTask(id));
+  };
+
+  const handleCompleteTask = (id) => {
+    dispatch(moveTaskToDone(id));
+  };
+
   return (
     <div>
       <Header />
 
-      <Container sx={{ mt: 3 }}>
+      <Container
+        sx={{
+          mt: 3,
+          display: "flex",
+          flexDirection: "column",
+          minHeight: "100vh",
+        }}
+      >
         <Box
           sx={{
             display: "flex",
@@ -88,14 +108,30 @@ export default function Board() {
                       p: 2,
                       borderRadius: 2,
                       bgcolor: "white",
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
                     }}
                   >
-                    <Typography fontWeight={600}>{task.title}</Typography>
-                    {task.description && (
-                      <Typography variant="body2" sx={{ mt: 0.5 }}>
-                        {task.description}
-                      </Typography>
-                    )}
+                    <Box>
+                      <Typography fontWeight={600}>{task.title}</Typography>
+                      {task.description && (
+                        <Typography variant="body2" sx={{ mt: 0.5 }}>
+                          {task.description}
+                        </Typography>
+                      )}
+                    </Box>
+
+                    <Box>
+                      <DeleteOutlineOutlinedIcon
+                        onClick={() => handleDeleteTask(task.id)}
+                        sx={{ color: "red", cursor: "pointer" }}
+                      />
+                      <CheckCircleOutlineIcon
+                        onClick={() => handleCompleteTask(task.id)}
+                        sx={{ color: "green", cursor: "pointer" }}
+                      />
+                    </Box>
                   </Paper>
                 ))}
 
@@ -107,6 +143,7 @@ export default function Board() {
           })}
         </Box>
       </Container>
+      <Footer />
 
       <AddTaskModal
         open={modalOpen}

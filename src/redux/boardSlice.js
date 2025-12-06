@@ -28,10 +28,20 @@ const boardSlice = createSlice({
         };
       },
     },
+    deleteTask(state, action) {
+      state.tasks = state.tasks.filter((t) => t.id !== action.payload);
+    },
+    moveTaskToDone(state, action) {
+      const id = action.payload;
+      const task = state.tasks.find((t) => t.id === id);
+      if (task) {
+        task.columnId = "done";
+      }
+    },
   },
 });
 
-export const { addTask } = boardSlice.actions;
+export const { addTask, deleteTask, moveTaskToDone } = boardSlice.actions;
 
 export const selectColumns = (state) => state.board.columns;
 export const selectTasks = (state) => state.board.tasks;

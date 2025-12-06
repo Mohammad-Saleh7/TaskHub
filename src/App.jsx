@@ -5,15 +5,17 @@ import { Box } from "@mui/material";
 export default function App() {
   return (
     <div>
-      <Box
-        sx={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}
-      >
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Board />} />
-          </Routes>
-        </BrowserRouter>
-      </Box>
+      <BrowserRouter>
+        <Box
+          sx={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}
+        >
+          <Box sx={{ flex: 1 }}>
+            <Routes>
+              <Route path="/" element={<Board />} />
+            </Routes>
+          </Box>
+        </Box>
+      </BrowserRouter>
     </div>
   );
 }

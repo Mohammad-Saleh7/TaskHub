@@ -17,7 +17,6 @@ export default function AddTaskModal({ open, onClose, columnId }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
-  // هر بار ستون عوض شد یا مودال باز شد، فرم خالی شود
   useEffect(() => {
     if (open) {
       setTitle("");
