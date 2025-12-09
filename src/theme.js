@@ -6,7 +6,7 @@ const theme = createTheme({
         mode: "light",
         primary: { main: "#007FF" },
         background: {
-          default: "#ffffffff",
+          default: "#F1EFEC",
           lightPaper: "#eeebebff",
         },
         navbar: {
