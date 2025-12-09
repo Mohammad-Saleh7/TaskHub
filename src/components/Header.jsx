@@ -12,6 +12,9 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
+import ModeToggle from "./ModeToggle";
+import Button from "@mui/material/Button";
+import Setting from "./Setting";
 
 export default function Header() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -113,7 +116,14 @@ export default function Header() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" sx={{ bgcolor: "#CBCBCB", color: "black" }}>
+      <AppBar
+        position="static"
+        sx={(theme) => ({
+          bgcolor:
+            theme.palette.mode === "dark" ? "navbar.default" : "navbar.default",
+          color: "black",
+        })}
+      >
         <Toolbar>
           <Typography
             variant="h6"
@@ -125,26 +135,30 @@ export default function Header() {
           </Typography>
 
           <Box sx={{ flexGrow: 1 }} />
-          <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            <IconButton
-              size="large"
-              aria-label="show 4 new mails"
-              color="inherit"
-            >
-              <SettingsIcon />
-            </IconButton>
+          <Box sx={{ display: "flex", alignItems: "center" }}>
+            <Box>
+              <IconButton
+                size="large"
+                aria-label="show 4 new mails"
+                color="inherit"
+              >
+                <Setting />
+              </IconButton>
+            </Box>
 
-            <IconButton
-              size="large"
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              color="inherit"
-            >
-              <AccountCircle />
-            </IconButton>
+            <Box>
+              <IconButton
+                size="large"
+                edge="end"
+                aria-label="account of current user"
+                aria-controls={menuId}
+                aria-haspopup="true"
+                onClick={handleProfileMenuOpen}
+                color="inherit"
+              >
+                <AccountCircle />
+              </IconButton>
+            </Box>
           </Box>
           <Box sx={{ display: { xs: "flex", md: "none" } }}>
             <IconButton

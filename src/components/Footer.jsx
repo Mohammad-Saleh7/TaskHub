@@ -7,18 +7,26 @@ export default function Footer() {
   return (
     <Box
       component="footer"
-      sx={{
-        borderTop: "1px solid #e0e0e0",
-        bgcolor: "#CBCBCB",
+      sx={(theme) => ({
+        bgcolor:
+          theme.palette.mode === "dark" ? "navbar.default" : "navbar.default",
         px: 4,
         py: 1.5,
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
         fontSize: 14,
-      }}
+      })}
     >
-      <Typography variant="body2" color="text.secondary">
+      <Typography
+        variant="body2"
+        sx={(theme) => ({
+          color:
+            theme.palette.mode === "dark"
+              ? "text.primary"
+              : "text.lightPrimary",
+        })}
+      >
         © {new Date().getFullYear()} Task Hub
       </Typography>
 

@@ -31,17 +31,51 @@ const boardSlice = createSlice({
     deleteTask(state, action) {
       state.tasks = state.tasks.filter((t) => t.id !== action.payload);
     },
-    moveTaskToDone(state, action) {
-      const id = action.payload;
+    moveTask(state, action) {
+      const { id, columnId } = action.payload;
       const task = state.tasks.find((t) => t.id === id);
       if (task) {
-        task.columnId = "done";
+        task.columnId = columnId;
+      }
+    },
+    addColumn: {
+      reducer(state, action) {
+        state.columns.push(action.payload);
+      },
+      prepare({ title, color }) {
+        return {
+          payload: {
+            id: nanoid(),
+            title,
+            color: color || "#E0E0E0",
+          },
+        };
+      },
+    },
+    deleteColumn(state, action) {
+      const columnId = action.payload;
+      state.columns = state.columns.filter((col) => col.id !== columnId);
+      state.tasks = state.tasks.filter((t) => t.id !== columnId);
+    },
+    updateColumn(state, action) {
+      const { id, title, color } = action.payload;
+      const column = state.columns.find((col) => col.id === id);
+      if (column) {
+        column.title = title ?? column.title;
+        column.color = color ?? column.color;
       }
     },
   },
 });
 
-export const { addTask, deleteTask, moveTaskToDone } = boardSlice.actions;
+export const {
+  addTask,
+  deleteTask,
+  moveTask,
+  addColumn,
+  deleteColumn,
+  updateColumn,
+} = boardSlice.actions;
 
 export const selectColumns = (state) => state.board.columns;
 export const selectTasks = (state) => state.board.tasks;
