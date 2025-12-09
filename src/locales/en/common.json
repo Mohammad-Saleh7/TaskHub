@@ -1,0 +1,57 @@
+{
+  "navbar": {
+    "title": "Task Board",
+    "light": "Light Mode",
+    "dark": "Dark Mode",
+    "profile": "Profile",
+    "account": "My Account",
+    "settings": "Settings"
+  },
+
+  "board": {
+    "pageTitle": "Board Page",
+    "addColumn": "+ COLUMN",
+    "addTask": "+ ADD TASK"
+  },
+
+  "columns": {
+    "todo": "To Do",
+    "inProgress": "In Progress",
+    "done": "Done",
+    "edit": "Edit column",
+    "delete": "Delete column",
+    "label": "Column title",
+    "color": "color",
+    "addColumn": "Add Column"
+  },
+
+  "task": {
+    "title": "Title",
+    "description": "Description",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete Task",
+    "moveToInProgress": "Move to In Progress",
+    "moveToDone": "Move to Done",
+    "moveToTodo": "Move to To Do",
+    "backToInProgress": "Back to In Progress"
+  },
+
+  "modals": {
+    "addTaskTitle": "Add Task",
+    "editColumnTitle": "Edit Column",
+    "columnTitle": "Column Title",
+    "columnColor": "Color"
+  },
+  "setting": {
+    "light": "light",
+    "dark": "dark",
+    "persian": "persian",
+    "english": "english"
+  },
+  "footer": {
+    "taskHub": "Task Hub",
+    "title": "Made by",
+    "name": "Saleh Abbasi"
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "navbar": {
+    "title": "تسک بورد",
+    "light": "حالت روشن",
+    "dark": "حالت تاریک",
+    "profile": "پروفایل",
+    "account": "حساب کاربری",
+    "settings": "تنظیمات"
+  },
+
+  "board": {
+    "pageTitle": "صفحه تسک‌ها",
+    "addColumn": "+ افزودن ستون",
+    "addTask": "+ افزودن تسک"
+  },
+
+  "columns": {
+    "todo": "برای انجام",
+    "inProgress": "در حال انجام",
+    "done": "انجام‌شده",
+    "edit": "ویرایش ستون",
+    "delete": "حذف ستون",
+    "label": "متن ستون",
+    "color": "رنگ",
+    "addColumn": "افزودن ستون"
+  },
+
+  "task": {
+    "title": "عنوان",
+    "description": "توضیحات",
+    "save": "ذخیره",
+    "cancel": "لغو",
+    "delete": "حذف تسک",
+    "moveToInProgress": "انتقال به در حال انجام",
+    "moveToDone": "انتقال به انجام‌شده",
+    "moveToTodo": "بازگشت به برای انجام",
+    "backToInProgress": "بازگشت به در حال انجام"
+  },
+
+  "modals": {
+    "addTaskTitle": "افزودن تسک",
+    "editColumnTitle": "ویرایش ستون",
+    "columnTitle": "عنوان ستون",
+    "columnColor": "رنگ ستون"
+  },
+  "setting": {
+    "light": "روشن",
+    "dark": "تاریک",
+    "persian": "پارسی",
+    "english": "انگلیسی"
+  },
+  "footer": {
+    "taskHub": "تسک هاب",
+    "title": "ساخته شده توسط",
+    "name": "صالح عباسی"
+  }
+}

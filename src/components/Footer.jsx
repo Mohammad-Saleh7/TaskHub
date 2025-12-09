@@ -2,6 +2,7 @@
 import { Box, Typography, IconButton, Link } from "@mui/material";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import { t } from "i18next";
 
 export default function Footer() {
   return (
@@ -27,12 +28,20 @@ export default function Footer() {
               : "text.lightPrimary",
         })}
       >
-        © {new Date().getFullYear()} Task Hub
+        © {new Date().getFullYear()} {t("footer.taskHub")}
       </Typography>
 
       <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
-        <Typography variant="body2" color="text.secondary">
-          Made by <b>Saleh Abbasi</b>
+        <Typography
+          variant="body2"
+          sx={(theme) => ({
+            color:
+              theme.palette.mode === "dark"
+                ? "text.primary"
+                : "text.lightPrimary",
+          })}
+        >
+          {t("footer.title")} <b>{t("footer.name")}</b>
         </Typography>
 
         <IconButton

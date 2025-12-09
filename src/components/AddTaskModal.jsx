@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, use } from "react";
 import {
   Dialog,
   DialogTitle,
@@ -7,12 +7,15 @@ import {
   TextField,
   Button,
   Stack,
+  useTheme,
 } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { addTask } from "../redux/boardSlice";
+import { t } from "i18next";
 
 export default function AddTaskModal({ open, onClose, columnId }) {
   const dispatch = useDispatch();
+  const theme = useTheme();
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -33,28 +36,39 @@ export default function AddTaskModal({ open, onClose, columnId }) {
 
   return (
     <Dialog open={open} onClose={onClose} fullWidth maxWidth="sm">
-      <DialogTitle>Add Task</DialogTitle>
+      <DialogTitle>{t("task.title")}</DialogTitle>
       <DialogContent>
         <Stack spacing={2} mt={1}>
           <TextField
-            label="Title"
+            label={t("task.title")}
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             autoFocus
+            InputLabelProps={{ style: { color: theme.palette.text.primary } }}
           />
           <TextField
-            label="Description"
+            label={t("task.description")}
             multiline
             minRows={3}
             value={description}
             onChange={(e) => setDescription(e.target.value)}
+            InputLabelProps={{ style: { color: theme.palette.text.primary } }}
           />
         </Stack>
       </DialogContent>
       <DialogActions>
-        <Button onClick={onClose}>Cancel</Button>
-        <Button variant="contained" onClick={handleSubmit}>
-          Save
+        <Button onClick={onClose}>{t("task.cancel")}</Button>
+        <Button
+          variant="outlined"
+          onClick={handleSubmit}
+          sx={{
+            color:
+              theme.palette.mode === "dark"
+                ? "text.primary"
+                : "text.lightPrimary",
+          }}
+        >
+          {t("task.save")}
         </Button>
       </DialogActions>
     </Dialog>

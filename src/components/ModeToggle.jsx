@@ -1,6 +1,7 @@
 import { useColorScheme, Button, Box } from "@mui/material";
 import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
 import BedtimeOutlinedIcon from "@mui/icons-material/BedtimeOutlined";
+import { t } from "i18next";
 
 const ModeToggle = () => {
   const { mode, setMode } = useColorScheme();
@@ -40,7 +41,7 @@ const ModeToggle = () => {
           })}
           className="icon"
         />
-        light
+        {t("setting.light")}
       </Button>
 
       <Button
@@ -74,7 +75,7 @@ const ModeToggle = () => {
           })}
           className="icon"
         />
-        dark
+        {t("setting.dark")}
       </Button>
     </Box>
   );

@@ -14,7 +14,7 @@ import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import CloseIcon from "@mui/icons-material/Close";
-import PendingActionsIcon from "@mui/icons-material/PendingActions"; // برای inProgress
+import PendingActionsIcon from "@mui/icons-material/PendingActions"; //
 import ReplayIcon from "@mui/icons-material/Replay";
 
 import Header from "../components/Header";
@@ -27,30 +27,55 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectColumns, selectTasks } from "../redux/boardSlice";
 import { deleteTask, moveTask, deleteColumn } from "../redux/boardSlice";
 import Footer from "../components/Footer";
+import { t } from "i18next";
 
 export default function Board() {
   const columns = useSelector(selectColumns);
   const tasks = useSelector(selectTasks);
   const dispatch = useDispatch();
   const theme = useTheme();
-
+  // {Add Task Modal}
   const [modalOpen, setModalOpen] = useState(false);
   const [activeColumnId, setActiveColumnId] = useState(null);
-  const [columnModalOpen, setColumnModalOpen] = useState(false);
-
-  const [columnMenuAnchor, setColumnMenuAnchor] = useState(null);
-  const [selectedColumnId, setSelectedColumnId] = useState(null);
-
-  const [editColumnModalOpen, setEditColumnModalOpen] = useState(false);
 
   const handleOpenModal = (columnId) => {
     setActiveColumnId(columnId);
     setModalOpen(true);
   };
-
   const handleCloseModal = () => {
     setModalOpen(false);
     setActiveColumnId(null);
+  };
+  // {Add Task Modal}
+
+  // {Add Column Modal}
+  const [columnModalOpen, setColumnModalOpen] = useState(false);
+  const handleOpenColumnModal = () => {
+    setColumnModalOpen(true);
+  };
+  const handleCloseColumnModal = () => {
+    setColumnModalOpen(false);
+  };
+  // {Add Column Modal}
+
+  const [editColumnModalOpen, setEditColumnModalOpen] = useState(false);
+  const [columnMenuAnchor, setColumnMenuAnchor] = useState(null);
+  const [selectedColumnId, setSelectedColumnId] = useState(null);
+  const handleCloseColumnMenu = () => {
+    setColumnMenuAnchor(null);
+  };
+
+  const handleOpenColumnMenu = (event, columnId) => {
+    setColumnMenuAnchor(event.currentTarget);
+    setSelectedColumnId(columnId);
+  };
+  const handleOpenEditColumn = () => {
+    setEditColumnModalOpen(true);
+    handleCloseColumnMenu();
+  };
+
+  const handleCloseEditColumn = () => {
+    setEditColumnModalOpen(false);
   };
 
   const handleDeleteTask = (id) => {
@@ -61,36 +86,10 @@ export default function Board() {
     dispatch(moveTask({ id, columnId: newColumnId }));
   };
 
-  const handleOpenColumnModal = () => {
-    setColumnModalOpen(true);
-  };
-
-  const handleCloseColumnModal = () => {
-    setColumnModalOpen(false);
-  };
-
-  const handleOpenColumnMenu = (event, columnId) => {
-    setColumnMenuAnchor(event.currentTarget);
-    setSelectedColumnId(columnId);
-  };
-
-  const handleCloseColumnMenu = () => {
-    setColumnMenuAnchor(null);
-  };
-
   const handleDeleteColumn = () => {
     if (!selectedColumnId) return;
     dispatch(deleteColumn(selectedColumnId));
     handleCloseColumnMenu();
-  };
-
-  const handleOpenEditColumn = () => {
-    setEditColumnModalOpen(true);
-    handleCloseColumnMenu();
-  };
-
-  const handleCloseEditColumn = () => {
-    setEditColumnModalOpen(false);
   };
 
   const selectedColumn = columns.find((col) => col.id === selectedColumnId);
@@ -115,7 +114,7 @@ export default function Board() {
           }}
         >
           <Typography variant="h5" fontWeight={600}>
-            Board Page
+            {t("board.pageTitle")}{" "}
           </Typography>
           <Button
             variant="contained"
@@ -132,7 +131,7 @@ export default function Board() {
               width: 160,
             }}
           >
-            + Column
+            {t("board.addColumn")}
           </Button>
         </Box>
 
@@ -173,7 +172,7 @@ export default function Board() {
                     alignItems: "center",
                   }}
                 >
-                  <Typography fontWeight={600}>{column.title}</Typography>
+                  <Typography fontWeight={600}>{t(column.titleKey)}</Typography>
                   <IconButton
                     size="small"
                     onClick={(e) => handleOpenColumnMenu(e, column.id)}
@@ -215,7 +214,6 @@ export default function Board() {
                     </Box>
 
                     <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-                      {/* To Do → بفرست به InProgress */}
                       {column.id === "todo" && (
                         <PendingActionsIcon
                           onClick={() => handleMoveTask(task.id, "inProgress")}
@@ -223,7 +221,6 @@ export default function Board() {
                         />
                       )}
 
-                      {/* InProgress → بفرست Done */}
                       {column.id === "inProgress" && (
                         <CheckCircleOutlineIcon
                           onClick={() => handleMoveTask(task.id, "done")}
@@ -231,9 +228,6 @@ export default function Board() {
                         />
                       )}
 
-                      {/* Done → حالا ۲ تا دکمه: 
-        Replay → InProgress 
-        X → ToDo */}
                       {column.id === "done" && (
                         <>
                           <ReplayIcon
@@ -253,8 +247,6 @@ export default function Board() {
                           />
                         </>
                       )}
-
-                      {/* Delete در همه ستون‌ها */}
 
                       <DeleteOutlineOutlinedIcon
                         onClick={() => handleDeleteTask(task.id)}
@@ -284,17 +276,15 @@ export default function Board() {
       />
       <AddColumnModal open={columnModalOpen} onClose={handleCloseColumnModal} />
 
-      {/* منوی سه‌نقطه ستون */}
       <Menu
         anchorEl={columnMenuAnchor}
         open={Boolean(columnMenuAnchor)}
         onClose={handleCloseColumnMenu}
       >
-        <MenuItem onClick={handleOpenEditColumn}>Edit column</MenuItem>
-        <MenuItem onClick={handleDeleteColumn}>Delete column</MenuItem>
+        <MenuItem onClick={handleOpenEditColumn}>{t("columns.edit")}</MenuItem>
+        <MenuItem onClick={handleDeleteColumn}>{t("columns.delete")}</MenuItem>
       </Menu>
 
-      {/* مودال ویرایش ستون */}
       <EditColumnModal
         open={editColumnModalOpen}
         onClose={handleCloseEditColumn}

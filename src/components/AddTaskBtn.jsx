@@ -1,5 +1,6 @@
 // AddTaskBtn.jsx
 import { Button, useTheme } from "@mui/material";
+import { t } from "i18next";
 
 export default function AddTaskBtn({ onClick }) {
   const theme = useTheme();
@@ -16,7 +17,7 @@ export default function AddTaskBtn({ onClick }) {
           theme.palette.mode === "dark" ? "text.primary" : "text.lightPrimary",
       }}
     >
-      + ADD TASK
+      {t("board.addTask")}
     </Button>
   );
 }

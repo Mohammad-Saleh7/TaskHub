@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, use } from "react";
 import {
   Dialog,
   DialogTitle,
@@ -7,17 +7,19 @@ import {
   TextField,
   Button,
   Stack,
+  useTheme,
 } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { addColumn } from "../redux/boardSlice";
+import { t } from "i18next";
 
 export default function AddColumnModal({ open, onClose }) {
   const dispatch = useDispatch();
+  const theme = useTheme();
 
   const [title, setTitle] = useState("");
-  const [color, setColor] = useState("#FFCDC9"); // رنگ پیش‌فرض
+  const [color, setColor] = useState("#FFCDC9");
 
-  // هر بار مودال باز شد فرم خالی شود
   useEffect(() => {
     if (open) {
       setTitle("");
@@ -34,27 +36,37 @@ export default function AddColumnModal({ open, onClose }) {
 
   return (
     <Dialog open={open} onClose={onClose} fullWidth maxWidth="xs">
-      <DialogTitle>Add Column</DialogTitle>
+      <DialogTitle>{t("columns.addColumn")}</DialogTitle>
       <DialogContent>
         <Stack spacing={2} mt={1}>
           <TextField
-            label="Column title"
+            label={t("columns.label")}
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             autoFocus
+            InputLabelProps={{ style: { color: theme.palette.text.primary } }}
           />
           <TextField
-            label="Color (hex)"
+            label={t("modals.columnColor")}
             value={color}
             onChange={(e) => setColor(e.target.value)}
-            helperText=" #FFCDC9"
+            InputLabelProps={{ style: { color: theme.palette.text.primary } }}
           />
         </Stack>
       </DialogContent>
       <DialogActions>
-        <Button onClick={onClose}>Cancel</Button>
-        <Button variant="contained" onClick={handleSubmit}>
-          Save
+        <Button onClick={onClose}>{t("task.cancel")}</Button>
+        <Button
+          variant="outlined"
+          onClick={handleSubmit}
+          sx={{
+            color:
+              theme.palette.mode === "dark"
+                ? "text.primary"
+                : "text.lightPrimary",
+          }}
+        >
+          {t("task.save")}
         </Button>
       </DialogActions>
     </Dialog>
