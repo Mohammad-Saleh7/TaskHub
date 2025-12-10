@@ -43,15 +43,46 @@
     "columnTitle": "Column Title",
     "columnColor": "Color"
   },
+
   "setting": {
     "light": "light",
     "dark": "dark",
     "persian": "persian",
     "english": "english"
   },
+
   "footer": {
     "taskHub": "Task Hub",
     "title": "Made by",
     "name": "Saleh Abbasi"
+  },
+
+  "login": {
+    "login": "Login",
+    "signUp": "Sign Up",
+    "name": "Name",
+    "namePlaceholder": "Enter your name",
+    "nameRequired": "Name is required",
+    "nameMin": "Name must be at least 2 characters",
+    "nameMax": "Name must be less than 31 characters",
+
+    "lastName": "Last Name",
+    "lastNamePlaceholder": "Enter your last name",
+    "lastNameRequired": "Last name is required",
+    "lastNameMin": "Last name must be at least 2 characters",
+    "lastNameMax": "Last name must be less than 31 characters",
+
+    "emailLabel": "Email Address",
+    "emailPlaceholder": "Enter your email",
+    "emailRequired": "Email is required",
+    "emailInvalid": "Please enter a valid email",
+
+    "passwordLabel": "Password",
+    "passwordPlaceholder": "Enter your password",
+    "passwordRequired": "Password is required",
+    "passwordPattern": "Must contain uppercase, lowercase, number & special character",
+
+    "welcome": "Welcome!",
+    "enterInputs": "Please fill in all fields"
   }
 }

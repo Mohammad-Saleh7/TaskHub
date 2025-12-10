@@ -8,6 +8,7 @@ const theme = createTheme({
         background: {
           default: "#F1EFEC",
           lightPaper: "#eeebebff",
+          background2: "#393E46",
         },
         navbar: {
           default: "#CBCBCB",

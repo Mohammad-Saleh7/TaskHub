@@ -9,8 +9,12 @@ import Menu from "@mui/material/Menu";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import Setting from "./Setting";
 import { t } from "i18next";
+import { useTheme } from "@emotion/react";
+import { useNavigate } from "react-router-dom";
 
 export default function Header() {
+  const theme = useTheme();
+  const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const isMenuOpen = Boolean(anchorEl);
@@ -20,6 +24,15 @@ export default function Header() {
   };
 
   const handleMenuClose = () => {
+    navigate("/login");
+    setAnchorEl(null);
+  };
+  const handleLogin = () => {
+    navigate("auth/login");
+    setAnchorEl(null);
+  };
+  const handleSignUp = () => {
+    navigate("auth/signup");
     setAnchorEl(null);
   };
 
@@ -40,8 +53,8 @@ export default function Header() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={handleLogin}> {t("login.login")} </MenuItem>
+      <MenuItem onClick={handleSignUp}>{t("login.signUp")}</MenuItem>
     </Menu>
   );
 
@@ -56,7 +69,17 @@ export default function Header() {
         })}
       >
         <Toolbar>
-          <Typography variant="h6" noWrap component="div">
+          <Typography
+            variant="h6"
+            noWrap
+            component="div"
+            sx={{
+              color:
+                theme.palette.mode === "dark"
+                  ? "text.primary"
+                  : "text.lightPrimary",
+            }}
+          >
             {t("navbar.title")}
           </Typography>
 
@@ -64,7 +87,15 @@ export default function Header() {
 
           <Box sx={{ display: "flex", alignItems: "center" }}>
             <Box>
-              <IconButton size="large" color="inherit">
+              <IconButton
+                size="large"
+                sx={{
+                  color:
+                    theme.palette.mode === "dark"
+                      ? "text.primary"
+                      : "text.lightPrimary",
+                }}
+              >
                 <Setting />
               </IconButton>
             </Box>
@@ -77,7 +108,12 @@ export default function Header() {
                 aria-controls={menuId}
                 aria-haspopup="true"
                 onClick={handleProfileMenuOpen}
-                color="inherit"
+                sx={{
+                  color:
+                    theme.palette.mode === "dark"
+                      ? "text.primary"
+                      : "text.lightPrimary",
+                }}
               >
                 <AccountCircle />
               </IconButton>

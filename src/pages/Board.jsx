@@ -96,7 +96,7 @@ export default function Board() {
 
   return (
     <div>
-      <Header />
+      {/* <Header /> */}
 
       <Container
         sx={{
@@ -268,7 +268,7 @@ export default function Board() {
           })}
         </Box>
       </Container>
-      <Footer />
+      {/* <Footer /> */}
 
       <AddTaskModal
         open={modalOpen}

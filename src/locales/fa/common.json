@@ -43,15 +43,47 @@
     "columnTitle": "عنوان ستون",
     "columnColor": "رنگ ستون"
   },
+
   "setting": {
     "light": "روشن",
     "dark": "تاریک",
     "persian": "پارسی",
     "english": "انگلیسی"
   },
+
   "footer": {
     "taskHub": "تسک هاب",
     "title": "ساخته شده توسط",
     "name": "صالح عباسی"
+  },
+
+  "login": {
+    "login": "ورود",
+    "signUp": "ثبت نام",
+
+    "name": "نام",
+    "namePlaceholder": "نام خود را وارد کنید",
+    "nameRequired": "وارد کردن نام الزامی است",
+    "nameMin": "نام باید حداقل ۲ کاراکتر باشد",
+    "nameMax": "نام باید کمتر از ۳۱ کاراکتر باشد",
+
+    "lastName": "نام خانوادگی",
+    "lastNamePlaceholder": "نام خانوادگی خود را وارد کنید",
+    "lastNameRequired": "وارد کردن نام خانوادگی الزامی است",
+    "lastNameMin": "نام خانوادگی باید حداقل ۲ کاراکتر باشد",
+    "lastNameMax": "نام خانوادگی باید کمتر از ۳۱ کاراکتر باشد",
+
+    "emailLabel": "ایمیل",
+    "emailPlaceholder": "ایمیل خود را وارد کنید",
+    "emailRequired": "ایمیل الزامی است",
+    "emailInvalid": "لطفاً یک ایمیل معتبر وارد کنید",
+
+    "passwordLabel": "رمز عبور",
+    "passwordPlaceholder": "رمز عبور خود را وارد کنید",
+    "passwordRequired": "رمز عبور الزامی است",
+    "passwordPattern": "باید شامل حروف کوچک، بزرگ، عدد و کاراکتر خاص باشد",
+
+    "welcome": "خوش آمدید!",
+    "enterInputs": "لطفاً تمام فیلدها را پر کنید"
   }
 }
