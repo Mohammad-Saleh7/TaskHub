@@ -173,7 +173,9 @@ export default function Board() {
                     alignItems: "center",
                   }}
                 >
-                  <Typography fontWeight={600}>{t(column.titleKey)}</Typography>
+                  <Typography fontWeight={600}>
+                    {column.titleKey ? t(column.titleKey) : column.title}
+                  </Typography>
                   <IconButton
                     size="small"
                     onClick={(e) => handleOpenColumnMenu(e, column.id)}
