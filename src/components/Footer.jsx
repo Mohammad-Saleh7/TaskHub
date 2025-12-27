@@ -47,7 +47,7 @@ export default function Footer() {
         <IconButton
           size="small"
           component={Link}
-          href="https://github.com/your-username"
+          href="https://github.com/Mohammad-Saleh7"
           target="_blank"
           rel="noopener"
         >
@@ -57,7 +57,7 @@ export default function Footer() {
         <IconButton
           size="small"
           component={Link}
-          href="https://linkedin.com/in/your-username"
+          href="https://linkedin.com/in/Mohammad-Saleh-Abbasi"
           target="_blank"
           rel="noopener"
         >
