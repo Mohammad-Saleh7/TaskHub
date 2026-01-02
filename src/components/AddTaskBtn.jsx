@@ -1,4 +1,3 @@
-// AddTaskBtn.jsx
 import { Button, useTheme } from "@mui/material";
 import { t } from "i18next";
 
